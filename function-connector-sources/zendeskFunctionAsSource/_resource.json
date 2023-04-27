@@ -1,0 +1,11 @@
+{
+  "$id": "Zendesk_Ticket_Comment_Function",
+  "$schema": "https://schema.yext.com/config/platform/plugin/v1",
+  "globals": {
+    "ZENDESK_SUBDOMAIN": "tags",
+    "memoryLimitMB": 500,
+    "password": "9YyJDdLQgSjEFSeCJYE06gKYWFGkaWOO5Dutldqj",
+    "startTime": "1678490159",
+    "username": "bmoum@yext.com/token"
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "$id": "discourse_urlTransform",
+    "$schema": "https://schema.yext.com/config/platform/plugin/v1",
+    "globals" : {
+        "domainHost": "${{domainHost}}"
+      }
+}

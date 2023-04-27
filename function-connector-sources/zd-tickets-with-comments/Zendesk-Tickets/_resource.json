@@ -1,0 +1,10 @@
+{
+  "$id": "Zendesk_Tickets_Header_Pagination",
+  "$schema": "https://schema.yext.com/config/platform/plugin/v1",
+  "globals": {
+    "ZENDESK_SUBDOMAIN": "${{ZENDESK_SUBDOMAIN}}",
+    "password": "${{password}}",
+    "username": "${{username}}",
+    "memoryLimitMB": 500
+  }
+}

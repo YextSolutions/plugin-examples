@@ -1,0 +1,8 @@
+{
+    "$id": "Freshdesk_Articles",
+    "$schema": "https://schema.yext.com/config/platform/plugin/v1",
+    "globals": {
+      "FRESHDESK_SUBDOMAIN": "yextdemo",
+      "api_key": "P6bskIkDmMCPLMh3mZcY"
+    }
+  }

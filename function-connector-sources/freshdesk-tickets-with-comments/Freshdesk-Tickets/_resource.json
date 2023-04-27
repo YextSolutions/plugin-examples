@@ -1,0 +1,8 @@
+{
+    "$id": "Freshdesk_Tickets",
+    "$schema": "https://schema.yext.com/config/platform/plugin/v1",
+    "globals": {
+      "FRESHDESK_SUBDOMAIN": "${{FRESHDESK_SUBDOMAIN}}",
+      "api_key": "${{API_KEY}}"
+    }
+  }

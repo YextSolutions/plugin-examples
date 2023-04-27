@@ -1,0 +1,8 @@
+{
+    "$id": "youtube_videosFullInfo",
+    "$schema": "https://schema.yext.com/config/platform/plugin/v1",
+    "globals": {
+      "API_KEY": "${{API_KEY}}",
+      "CHANNEL_ID": "${{CHANNEL_ID}}"
+    }
+  }
