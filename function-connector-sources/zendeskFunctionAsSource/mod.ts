@@ -3,11 +3,6 @@ declare const password: string;
 declare const subdomain: string;
 declare const startTime: string;
 
-// subdomain = "Tags"
-// username = "bmoum@yext.com/token"
-// password = "9YyJDdLQgSjEFSeCJYE06gKYWFGkaWOO5Dutldqj"
-// let cursor = "";
-
 
 // Encode the username and password as Base64 and pass in header
   const auth = btoa(`${username}:${password}`);
