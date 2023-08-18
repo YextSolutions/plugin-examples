@@ -1,20 +1,23 @@
 type ConnectorSource = (nextPageToken: string) => Promise<string>
+type ConnectorOptions = {
+  callbackFunc: (response: any) => void;
+}
 
-export async function testConnector(connectorFunction: ConnectorSource) {
+export async function testConnector(connectorFunction: ConnectorSource, options?: ConnectorOptions) {
   const data = [];
   let response;
   let nextPageToken = "";
 
   do {
-    const responseJSON = await connectorFunction(JSON.stringify({pageToken: response.nextPageToken}));
+    const responseJSON = await connectorFunction(JSON.stringify({pageToken: nextPageToken}));
     response = JSON.parse(responseJSON);
     nextPageToken = response.nextPageToken;
     data.push(...response.data);
-    console.info("\nresponse size:", response.data.length)
-    console.info("response next page token:", response.nextPageToken)
+    options?.callbackFunc(response);
   } while (nextPageToken);
 
-  console.info("end")
-  console.info("total updates returned: ", data.length)
-  console.info(data);
+  return {
+    updatesCount: data.length,
+    data: data
+  };
 }
