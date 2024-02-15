@@ -1,4 +1,3 @@
-
 const USAddressAbbreviationMatches = [
 	{Regex: /(\b)sq(\b)/ig, ReplaceWith: "Square"},
 	{Regex: /(\b)av(\b)/ig, ReplaceWith: "Ave"},
@@ -155,8 +154,11 @@ const USAddress1Flags = ["alley", "aly", "annex", "anx", "arcade", "arc", "avenu
 const USAddress2Flags = ["apartment", "apt", "building", "bldg", "department", "dept", "floor", "fl", "lot", "office", "ofc",
 	"room", "rm", "space", "spc", "suite", "suites", "ste", "unit"]
 
-export function splitAndCleanUSAddress(input: string) {
-	let {address1, address2} = splitUSAddress(input)
+export function splitAndCleanUSAddress(row : {input: string} ) {
+	if (typeof row.input !== 'string') {
+		return null;
+	  }
+	let {address1, address2} = splitUSAddress(row.input)
 	address1 = cleanUSAddress(address1)
 	address2 = cleanUSAddress(address2)
     
@@ -288,4 +290,5 @@ function isUSAddress2FlagException(token: string, address: string) {
 	return false
 }
 
-
+const output = splitAndCleanUSAddress('1620 N Carpenter Rd Bldg D Ste 57B');
+console.log(output);
