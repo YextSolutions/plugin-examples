@@ -127,6 +127,7 @@ const NameCapitalizationMatches = [
 
 const letterAfterNumberRegex = /(\b)[0-9]+[a-z](\b)/g
 const trailingPunctuationRegex  = /[,|/:|;|-]$/g
+let whitespaceRegex = /[\s]+/g
 
 const USAddress1Flags = ["alley", "aly", "annex", "anx", "arcade", "arc", "avenue", "ave", "bayoo", "byu",
 	"beach", "bch", "bend", "bnd", "bluff", "blf", "bluffs", "blfs", "bottom", "btm", "boulevard", "blvd", "branch",
@@ -161,8 +162,7 @@ export function splitAndCleanUSAddress(row : {input: string} ) {
 	let {address1, address2} = splitUSAddress(row.input)
 	address1 = cleanUSAddress(address1)
 	address2 = cleanUSAddress(address2)
-    
-    return {address1: address1, address2: address2}
+  return {address1: address1, address2: address2}
 }
 
 
@@ -224,13 +224,19 @@ export function capitalizeLetterAfterNumber(input: string) {
 export function removeTrailingPunctuationAndSpaces(input: string) {
 	input = input.trim();
 	input = input.replaceAll(trailingPunctuationRegex, "")
+	input = input.replaceAll(whitespaceRegex, " ");
 	input = input.trim();
 	return input
 }
 
 function titleCase(input: string) {
-	return input.toLowerCase().split(" ").reduce( (s, c) =>
-      s +""+(c.charAt(0).toUpperCase() + c.slice(1) +" "), '');
+	let letterRegex = /[a-z]/;
+	//we want to capitalize letters after dashes
+	let dashString = input.includes('-') ? input.toLowerCase().split(/-/).reduce( (s, c, index) =>
+  		s + ((index > 0) ? "-" : "") + ((c.charAt(0).toUpperCase()) + c.slice(1)), '')
+			: input.toLowerCase();
+	return dashString.split(" ").reduce( (s, c) =>
+      s + "" + (c.charAt(0).toUpperCase() + c.slice(1) +" "), '');
 }
 
 export function cleanEnglishText(input: string) {

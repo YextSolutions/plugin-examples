@@ -1,5 +1,5 @@
 // @ts-ignore
-import {  
+import {
     splitAndCleanUSAddress,
     cleanUSAddress,
 } from "./mod.ts";
@@ -54,12 +54,16 @@ Deno.test("Test splitAndCleanUSAddress", () => {
         {Input: "4625 S 2300 E Ste 104", Address1: "4625 S 2300 E", Address2: "Ste 104"},
         {Input: "966 Ste. Catherine Ouest", Address1: "966 Ste. Catherine Ouest", Address2: ""},
         {Input: "1443 Metropolitan Avenue - Ste C2", Address1: "1443 Metropolitan Avenue", Address2: "Ste C2"},
+        {Input: "1234 Tim-tam     street", Address1: "1234 Tim-Tam Street", Address2: ""},
     ]
-    
+
     for (let i in addressSplitTests) {
-        let {address1, address2} = splitAndCleanUSAddress(addressSplitTests[i].Input)
-        assertEquals(address1, addressSplitTests[i].Address1)
-        assertEquals(address2, addressSplitTests[i].Address2)
+      let addressObject = {
+        input: addressSplitTests[i].Input
+      };
+      let addressResult = splitAndCleanUSAddress(addressObject);
+      assertEquals(addressResult.address1, addressSplitTests[i].Address1)
+      assertEquals(addressResult.address2, addressSplitTests[i].Address2)
     }
 });
 
